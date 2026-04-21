@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | Strong and Free</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .admin-wrap { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .stat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+    .stat-card { background: var(--white); border-radius: var(--radius); padding: 1.25rem; border: 1px solid var(--light-grey); }
+    .stat-card .label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 0.5rem; }
+    .stat-card .value { font-family: var(--font-serif); font-size: 2rem; font-weight: 600; color: var(--charcoal); }
+    .stat-card .sub { font-size: 0.8rem; color: var(--mid-grey); margin-top: 0.25rem; }
+    .stat-card.alert .value { color: var(--terra); }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .data-table th { text-align: left; padding: 0.6rem 0.75rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid-grey); border-bottom: 2px solid var(--light-grey); }
+    .data-table td { padding: 0.75rem; border-bottom: 1px solid var(--beige-dark); }
+    .data-table tr:last-child td { border-bottom: none; }
+    .section-title { font-size: 1rem; font-weight: 700; margin: 2rem 0 0.75rem; color: var(--charcoal); }
+    .table-wrap { background: var(--white); border-radius: var(--radius); border: 1px solid var(--light-grey); overflow: hidden; }
+    .badge { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 50px; }
+    .badge-remote { background: #e8f5e9; color: #2e7d32; }
+    .badge-inperson { background: #fff3e0; color: #e65100; }
+    .badge-alert { background: #fce4ec; color: #c62828; }
+    #login-screen { max-width: 360px; margin: 6rem auto; padding: 0 1.5rem; text-align: center; }
+    #login-screen h2 { margin-bottom: 1.5rem; }
+    #password-input { width: 100%; padding: 0.875rem 1rem; border: 2px solid var(--light-grey); border-radius: 8px; font-size: 1rem; margin-bottom: 1rem; outline: none; }
+    #password-input:focus { border-color: var(--sage); }
+    @media (max-width: 700px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body style="background:var(--beige);">
+
+  <!-- Login screen -->
+  <div id="login-screen">
+    <p style="font-family:var(--font-serif);font-size:1.1rem;font-weight:600;color:var(--charcoal);margin-bottom:0.25rem;">Strong <span style="color:var(--terra)">&</span> Free</p>
+    <h2>Admin Dashboard</h2>
+    <input type="password" id="password-input" placeholder="Enter admin password" />
+    <button class="btn btn-primary" style="width:100%;" onclick="loadDashboard()">Sign In</button>
+    <div id="login-error" style="color:var(--terra);font-size:0.9rem;margin-top:0.75rem;display:none;">Incorrect password.</div>
+  </div>
+
+  <!-- Dashboard (hidden until authenticated) -->
+  <div id="dashboard" style="display:none;">
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="nav-logo" href="index.html">Strong <span>&</span> Free</a>
+        <span style="font-size:0.9rem;color:var(--mid-grey);">Admin Dashboard</span>
+        <button class="btn btn-secondary" style="padding:0.5rem 1rem;font-size:0.85rem;" onclick="location.reload()">Refresh</button>
+      </div>
+    </nav>
+
+    <div class="admin-wrap">
+      <div id="loading" style="text-align:center;padding:4rem;color:var(--mid-grey);">Loading…</div>
+      <div id="content" style="display:none;">
+
+        <!-- Summary stats -->
+        <div class="stat-grid" id="stat-grid"></div>
+
+        <!-- Failed payments -->
+        <div id="failed-section" style="display:none;">
+          <div class="section-title" style="color:var(--terra);">⚠️ Failed Payments — Needs Attention</div>
+          <div class="table-wrap">
+            <table class="data-table" id="failed-table">
+              <thead><tr><th>Name</th><th>Email</th><th>Past Due Since</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Active subscribers -->
+        <div class="section-title">Active Subscribers</div>
+        <div class="table-wrap">
+          <table class="data-table" id="sub-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Start Date</th><th>Next Renewal</th><th>$/mo</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <!-- Recent consultations -->
+        <div class="section-title">Recent Consultations (last 60 days)</div>
+        <div class="table-wrap">
+          <table class="data-table" id="consult-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Type</th><th>Date</th><th>Time</th><th>Amount</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <!-- Cancellations this month -->
+        <div id="cancel-section" style="display:none;">
+          <div class="section-title">Cancellations This Month</div>
+          <div class="table-wrap">
+            <table class="data-table" id="cancel-table">
+              <thead><tr><th>Name</th><th>Email</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="margin-top:2.5rem;padding:1.25rem;background:var(--white);border-radius:var(--radius);border:1px solid var(--light-grey);display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="https://dashboard.stripe.com" target="_blank" class="btn btn-secondary" style="font-size:0.9rem;padding:0.6rem 1.25rem;">Open Stripe Dashboard</a>
+          <button class="btn btn-sage" style="font-size:0.9rem;padding:0.6rem 1.25rem;" onclick="rotateLink()">Rotate Class Link Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let adminPassword = '';
+
+    function loadDashboard() {
+      adminPassword = document.getElementById('password-input').value;
+      if (!adminPassword) return;
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      fetchData();
+    }
+
+    document.getElementById('password-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') loadDashboard();
+    });
+
+    async function fetchData() {
+      try {
+        const res  = await fetch(`/api/admin?password=${encodeURIComponent(adminPassword)}`);
+        if (res.status === 401) {
+          document.getElementById('login-error').style.display = 'block';
+          document.getElementById('login-screen').style.display = 'block';
+          document.getElementById('dashboard').style.display = 'none';
+          return;
+        }
+        const data = await res.json();
+        renderDashboard(data);
+      } catch (e) {
+        document.getElementById('loading').textContent = 'Error loading data. Please refresh.';
+      }
+    }
+
+    function renderDashboard(data) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+
+      const s = data.summary;
+      document.getElementById('stat-grid').innerHTML = `
+        <div class="stat-card">
+          <div class="label">Active Members</div>
+          <div class="value">${s.activeSubscribers}</div>
+          <div class="sub">subscribers</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Revenue (This Month)</div>
+          <div class="value">$${s.revenueThisMonth}</div>
+          <div class="sub">all income</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Revenue (Last Month)</div>
+          <div class="value">$${s.revenueLastMonth}</div>
+        </div>
+        <div class="stat-card ${s.failedPayments > 0 ? 'alert' : ''}">
+          <div class="label">Failed Payments</div>
+          <div class="value">${s.failedPayments}</div>
+          <div class="sub">${s.failedPayments > 0 ? 'needs attention' : 'all clear'}</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Cancellations</div>
+          <div class="value">${s.cancellationsThisMonth}</div>
+          <div class="sub">this month</div>
+        </div>
+      `;
+
+      // Subscribers
+      const subBody = document.querySelector('#sub-table tbody');
+      subBody.innerHTML = data.subscribers.length
+        ? data.subscribers.map(s => `<tr><td>${s.name || '—'}</td><td>${s.email}</td><td>${s.startDate}</td><td>${s.renewalDate}</td><td>$${s.amount}</td></tr>`).join('')
+        : '<tr><td colspan="5" style="color:var(--mid-grey);">No active subscribers</td></tr>';
+
+      // Failed payments
+      if (data.failedPayments.length > 0) {
+        document.getElementById('failed-section').style.display = 'block';
+        document.querySelector('#failed-table tbody').innerHTML =
+          data.failedPayments.map(f => `<tr><td>${f.name || '—'}</td><td>${f.email}</td><td>${f.since}</td></tr>`).join('');
+      }
+
+      // Consultations
+      const consultBody = document.querySelector('#consult-table tbody');
+      consultBody.innerHTML = data.recentConsultations.length
+        ? data.recentConsultations.map(c => `<tr>
+            <td>${c.name}</td><td>${c.email}</td>
+            <td><span class="badge badge-${c.type}">${c.type === 'remote' ? 'Remote' : 'In-Person'}</span></td>
+            <td>${c.date}</td><td>${c.time}</td><td>$${c.amount}</td>
+          </tr>`).join('')
+        : '<tr><td colspan="6" style="color:var(--mid-grey);">No recent consultations</td></tr>';
+
+      // Cancellations
+      if (data.cancellations.length > 0) {
+        document.getElementById('cancel-section').style.display = 'block';
+        document.querySelector('#cancel-table tbody').innerHTML =
+          data.cancellations.map(c => `<tr><td>${c.name || '—'}</td><td>${c.email}</td></tr>`).join('');
+      }
+    }
+
+    async function rotateLink() {
+      if (!confirm('This will generate a new class link and email all active subscribers. Continue?')) return;
+      const secret = prompt('Enter the cron secret to confirm:');
+      if (!secret) return;
+      const res = await fetch(`/api/rotate-meet-link?secret=${encodeURIComponent(secret)}`);
+      const data = await res.json();
+      if (data.ok) {
+        alert(`Done! ${data.subscribersNotified} subscribers notified. New link: ${data.meetLink}`);
+      } else {
+        alert('Error: ' + data.error);
+      }
+    }
+  </script>
+</body>
+</html>
