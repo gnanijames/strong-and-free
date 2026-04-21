@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're In! | Strong and Free</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Strong <span>&</span> Free</a>
+    </div>
+  </nav>
+
+  <div class="result-page">
+    <div>
+      <div class="result-icon success">✅</div>
+      <h1 id="success-heading">You're in!</h1>
+      <p id="success-msg">Check your email — your welcome message with class details is on its way. We'll see you soon.</p>
+      <a href="index.html" class="btn btn-primary btn-lg">Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('type') === 'consult') {
+      document.getElementById('success-heading').textContent = 'Booking confirmed!';
+      document.getElementById('success-msg').textContent = 'Check your email — your confirmation with all the details is on its way. We look forward to meeting you.';
+    }
+  </script>
+</body>
+</html>

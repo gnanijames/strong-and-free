@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Consultation | Strong and Free</title>
+  <meta name="description" content="Book a private 30-minute consultation with Gnani. Remote ($100) or in-person in Markham ($250). Payment required to confirm your booking." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Strong <span>&</span> Free</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="about.html">About Gnani</a></li>
+        <li><a href="program.html">The Program</a></li>
+        <li><a href="book.html">Book a Consult</a></li>
+        <li class="nav-cta"><a href="subscribe.html" class="btn btn-primary">Join the Group</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="section-label">Book a Consultation</div>
+    <h1>Private 30-minute session with Gnani</h1>
+    <p>Choose your session type, pick a time, and pay to lock in your booking. You'll receive a confirmation email with all the details.</p>
+  </div>
+
+  <div class="booking-layout">
+    <!-- FORM -->
+    <div class="booking-form-wrap">
+
+      <!-- Session type -->
+      <h3 style="margin-bottom:1.25rem;">1. Choose your session type</h3>
+      <div class="consult-type-toggle" id="type-toggle">
+        <div class="consult-option selected" data-type="remote" data-price="100">
+          <span class="price-tag">$100</span>
+          <span class="type-label">Remote</span>
+          <span class="type-desc">Video call · 30 min</span>
+        </div>
+        <div class="consult-option" data-type="inperson" data-price="250">
+          <span class="price-tag">$250</span>
+          <span class="type-label">In-Person</span>
+          <span class="type-desc">Markham, Toronto · 30 min</span>
+        </div>
+      </div>
+
+      <div id="inperson-note" class="notice" style="display:none; margin-bottom:1.5rem;">
+        Location address will be sent in your confirmation email after payment. Markham, Toronto area.
+      </div>
+
+      <hr style="border:none; border-top:1px solid var(--light-grey); margin:1.5rem 0;" />
+
+      <!-- Date + Time -->
+      <h3 style="margin-bottom:1.25rem;">2. Select a date and time</h3>
+      <div class="form-group">
+        <label for="consult-date">Choose a date</label>
+        <input type="date" id="consult-date" name="date" required />
+      </div>
+
+      <div class="form-group">
+        <label>Available times <span style="font-size:0.8rem; font-weight:400; color:var(--mid-grey);">(Eastern Time)</span></label>
+        <div class="time-picker" id="time-picker">
+          <div class="time-slot" data-time="9:00 AM">9:00 AM</div>
+          <div class="time-slot" data-time="9:30 AM">9:30 AM</div>
+          <div class="time-slot" data-time="10:00 AM">10:00 AM</div>
+          <div class="time-slot" data-time="10:30 AM">10:30 AM</div>
+          <div class="time-slot" data-time="11:00 AM">11:00 AM</div>
+          <div class="time-slot" data-time="11:30 AM">11:30 AM</div>
+          <div class="time-slot" data-time="1:00 PM">1:00 PM</div>
+          <div class="time-slot" data-time="1:30 PM">1:30 PM</div>
+          <div class="time-slot" data-time="2:00 PM">2:00 PM</div>
+          <div class="time-slot" data-time="2:30 PM">2:30 PM</div>
+          <div class="time-slot" data-time="3:00 PM">3:00 PM</div>
+          <div class="time-slot" data-time="3:30 PM">3:30 PM</div>
+        </div>
+        <p id="no-date-msg" style="font-size:0.85rem; color:var(--mid-grey); margin-top:0.5rem;">Please select a date first to see available times.</p>
+      </div>
+
+      <hr style="border:none; border-top:1px solid var(--light-grey); margin:1.5rem 0;" />
+
+      <!-- Your details -->
+      <h3 style="margin-bottom:1.25rem;">3. Your details</h3>
+      <form id="booking-form">
+        <div class="form-group">
+          <label for="book-name">Full name</label>
+          <input type="text" id="book-name" name="name" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label for="book-email">Email address</label>
+          <input type="email" id="book-email" name="email" placeholder="you@example.com" required />
+          <small style="font-size:0.8rem; color:var(--mid-grey); margin-top:0.4rem; display:block;">Confirmation and meeting details will be sent here.</small>
+        </div>
+        <div class="form-group">
+          <label for="book-phone">Phone number <span style="font-weight:400; color:var(--mid-grey)">(optional)</span></label>
+          <input type="tel" id="book-phone" name="phone" placeholder="416-555-0100" />
+        </div>
+        <div class="form-group">
+          <label for="book-notes">What would you like to focus on? <span style="font-weight:400; color:var(--mid-grey)">(optional)</span></label>
+          <textarea id="book-notes" name="notes" placeholder="E.g. I have knee pain when climbing stairs and want to understand what I can do about it…"></textarea>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="book-casl" name="casl_consent" required />
+          <label for="book-casl">I agree to receive confirmation and reminder emails for this booking. <a href="privacy.html">Privacy Policy</a></label>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="book-waiver" name="waiver_consent" required />
+          <label for="book-waiver">I agree to the <a href="terms.html">Terms of Service</a> including the cancellation policy (24-hour notice required for a refund).</label>
+        </div>
+
+        <button type="submit" id="book-btn" class="btn btn-primary btn-lg" style="width:100%; margin-top:0.5rem;">
+          Pay & Confirm Booking →
+        </button>
+        <p style="font-size:0.8rem; text-align:center; margin-top:0.75rem; color:var(--mid-grey);">Powered by Stripe · Secure checkout · Confirmation sent immediately</p>
+      </form>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="booking-summary">
+      <div class="summary-card">
+        <h3>Booking Summary</h3>
+        <div class="summary-row">
+          <span>Session type</span>
+          <span id="summary-type">Remote</span>
+        </div>
+        <div class="summary-row">
+          <span>Duration</span>
+          <span>30 minutes</span>
+        </div>
+        <div class="summary-row">
+          <span>Date</span>
+          <span id="summary-date">—</span>
+        </div>
+        <div class="summary-row">
+          <span>Time (ET)</span>
+          <span id="summary-time">—</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total</span>
+          <span id="summary-price">$100</span>
+        </div>
+        <br/>
+        <p style="font-size:0.85rem; color:var(--mid-grey); margin:0;">Payment required to confirm your booking. Cancellation with 24 hours notice is fully refunded.</p>
+      </div>
+
+      <div style="margin-top:1.5rem; background:var(--beige); border-radius:var(--radius); padding:1.5rem;">
+        <h4 style="margin-bottom:0.75rem;">What to expect</h4>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem;">
+          <li style="font-size:0.9rem; display:flex; gap:0.5rem;">
+            <span style="color:var(--terra);">✓</span> Confirmation email sent immediately
+          </li>
+          <li style="font-size:0.9rem; display:flex; gap:0.5rem;">
+            <span style="color:var(--terra);">✓</span> Reminder 24 hours before
+          </li>
+          <li style="font-size:0.9rem; display:flex; gap:0.5rem;" id="remote-detail">
+            <span style="color:var(--terra);">✓</span> Google Meet link in your confirmation
+          </li>
+          <li style="font-size:0.9rem; display:flex; gap:0.5rem;" id="inperson-detail" style="display:none;">
+            <span style="color:var(--terra);">✓</span> Address sent in confirmation email
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="nav-logo" href="index.html">Strong <span style="color:var(--terra)">&</span> Free</a>
+        <p>Strength and mobility coaching for adults 55+.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Strong and Free. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    let selectedType = 'remote';
+    let selectedPrice = 100;
+    let selectedTime = null;
+
+    // Pre-select from URL param
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('type') === 'inperson') {
+      document.querySelectorAll('.consult-option')[0].classList.remove('selected');
+      document.querySelectorAll('.consult-option')[1].classList.add('selected');
+      selectedType = 'inperson';
+      selectedPrice = 250;
+      document.getElementById('inperson-note').style.display = 'block';
+      document.getElementById('summary-type').textContent = 'In-Person';
+      document.getElementById('summary-price').textContent = '$250';
+    }
+
+    // Type toggle
+    document.getElementById('type-toggle').addEventListener('click', function(e) {
+      const opt = e.target.closest('.consult-option');
+      if (!opt) return;
+      document.querySelectorAll('.consult-option').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      selectedType = opt.dataset.type;
+      selectedPrice = parseInt(opt.dataset.price);
+      document.getElementById('summary-type').textContent = selectedType === 'remote' ? 'Remote' : 'In-Person';
+      document.getElementById('summary-price').textContent = '$' + selectedPrice;
+      document.getElementById('inperson-note').style.display = selectedType === 'inperson' ? 'block' : 'none';
+      document.getElementById('remote-detail').style.display = selectedType === 'remote' ? 'flex' : 'none';
+      document.getElementById('inperson-detail').style.display = selectedType === 'inperson' ? 'flex' : 'none';
+    });
+
+    // Date selection
+    const dateInput = document.getElementById('consult-date');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+
+    dateInput.addEventListener('change', function() {
+      document.getElementById('no-date-msg').style.display = 'none';
+      document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('unavailable'));
+      document.getElementById('summary-date').textContent = new Date(this.value + 'T12:00:00').toLocaleDateString('en-CA', { weekday:'short', month:'long', day:'numeric' });
+    });
+
+    // Time selection
+    document.getElementById('time-picker').addEventListener('click', function(e) {
+      const slot = e.target.closest('.time-slot');
+      if (!slot || slot.classList.contains('unavailable')) return;
+      document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+      slot.classList.add('selected');
+      selectedTime = slot.dataset.time;
+      document.getElementById('summary-time').textContent = selectedTime;
+    });
+
+    // Booking form submit
+    document.getElementById('booking-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      if (!dateInput.value) { alert('Please select a date.'); return; }
+      if (!selectedTime) { alert('Please select a time slot.'); return; }
+
+      const btn = document.getElementById('book-btn');
+      btn.textContent = 'Redirecting to checkout…';
+      btn.disabled = true;
+
+      const data = {
+        name: document.getElementById('book-name').value,
+        email: document.getElementById('book-email').value,
+        phone: document.getElementById('book-phone').value,
+        notes: document.getElementById('book-notes').value,
+        type: selectedType,
+        price: selectedPrice,
+        date: dateInput.value,
+        time: selectedTime,
+      };
+
+      try {
+        const res = await fetch('/api/create-consultation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const { url, error } = await res.json();
+        if (url) {
+          window.location.href = url;
+        } else {
+          throw new Error(error || 'Something went wrong');
+        }
+      } catch (err) {
+        btn.textContent = 'Pay & Confirm Booking →';
+        btn.disabled = false;
+        alert('Sorry, something went wrong. Please try again or contact us.');
+      }
+    });
+  </script>
+</body>
+</html>
