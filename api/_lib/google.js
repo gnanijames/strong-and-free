@@ -1,25 +1,29 @@
 import { google } from 'googleapis';
 
-function getAuth() {
+const SEND_AS = process.env.COACH_EMAIL || 'hello@movestrongandfree.com';
+
+function getAuth(subject) {
   const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
-  return new google.auth.GoogleAuth({
-    credentials,
+  return new google.auth.JWT({
+    email: credentials.client_email,
+    key: credentials.private_key,
     scopes: [
-      'https://www.googleapis.com/auth/calendar',
       'https://www.googleapis.com/auth/gmail.send',
+      'https://www.googleapis.com/auth/calendar',
     ],
+    subject,
   });
 }
 
 export function getCalendar() {
-  return google.calendar({ version: 'v3', auth: getAuth() });
+  return google.calendar({ version: 'v3', auth: getAuth(SEND_AS) });
 }
 
 export function getGmail() {
-  return google.gmail({ version: 'v1', auth: getAuth() });
+  return google.gmail({ version: 'v1', auth: getAuth(SEND_AS) });
 }
 
-export const COACH_EMAIL    = process.env.COACH_EMAIL    || 'gnanijames@gmail.com';
+export const COACH_EMAIL    = SEND_AS;
 export const CALENDAR_ID    = process.env.GOOGLE_CALENDAR_ID || 'primary';
 export const CLASS_CALENDAR = process.env.CLASS_CALENDAR_ID;
 
