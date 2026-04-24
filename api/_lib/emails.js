@@ -72,7 +72,7 @@ export function welcomeSubscriberEmail({ name, classSchedule }) {
       <li style="margin-bottom:8px;">Allow your camera and microphone when prompted (you can keep camera off if you prefer)</li>
       <li style="margin-bottom:8px;">You'll enter the class and see Gnani — you're in!</li>
     </ol>
-    <p><strong>Need help?</strong> Reply to this email or reach us at <a href="mailto:gnanijames@gmail.com" style="color:${BRAND_COLOR};">gnanijames@gmail.com</a>. We're happy to walk you through it.</p>
+    <p><strong>Need help?</strong> Reply to this email or reach us at <a href="mailto:hello@movestrongandfree.com" style="color:${BRAND_COLOR};">hello@movestrongandfree.com</a>. We're happy to walk you through it.</p>
     <p>See you in class,<br/><strong>Gnani</strong><br/>Strong and Free</p>
   `);
   return { subject, html };
