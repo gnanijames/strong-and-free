@@ -41,7 +41,6 @@ export default async function handler(req, res) {
         },
       },
       customer_update: { address: 'auto' },
-      automatic_tax:   { enabled: true },
     };
 
     // Apply discount code if provided

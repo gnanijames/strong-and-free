@@ -38,7 +38,6 @@ export default async function handler(req, res) {
         consult_date:  date,
         consult_time:  time,
       },
-      automatic_tax: { enabled: true },
     });
 
     return res.status(200).json({ url: session.url });
