@@ -1,7 +1,7 @@
 
 const T = {
   en: {
-    nav: { programs:"Programs", about:"About", testimonials:"Stories", contact:"Contact", join:"Join Us" },
+    nav: { programs:"Programs", about:"About", testimonials:"Stories", contact:"Contact", join:"Join Now" },
     hero: {
       badge:"Strength & Mobility Coaching · Adults 55+",
       h1a:"This is your",
@@ -215,6 +215,8 @@ const T = {
 const LOGO = "/images/strong-and-free-logo.png";
 const WHATSAPP = "https://chat.whatsapp.com/JRausmtyM1f4uVSTMDDIMC?mode=gi_t";
 const WA_START = "https://wa.me/14166718343?text=" + encodeURIComponent("Hi! I'd like to learn more about Strong and Free");
+// Paste your YouTube video ID here when your video is uploaded, e.g. 'dQw4w9WgXcQ'
+const YOUTUBE_VIDEO_ID = '';
 
 function useFadeUp() {
   const ref = React.useRef(null);
@@ -240,6 +242,43 @@ function FadeUp({ children, className = "", style }) {
   return <div ref={ref} className={`fade-up ${vis ? "in" : ""} ${className}`} style={style}>{children}</div>;
 }
 
+function VideoSection({ lang }) {
+  if (!YOUTUBE_VIDEO_ID) return null;
+  return (
+    <section className="section" style={{paddingTop:64,paddingBottom:64,background:"var(--cream)"}}>
+      <FadeUp>
+        <div style={{textAlign:"center",marginBottom:32}}>
+          <p className="sec-label">{lang === "en" ? "See It In Action" : "இயக்கத்தில் பாருங்கள்"}</p>
+          <h2 style={{fontFamily:"Georgia,serif",fontSize:"clamp(1.6rem,4vw,2.2rem)",color:"var(--forest)",margin:"8px 0 12px",fontWeight:"bold"}}>
+            {lang === "en" ? "A real Strong & Free class" : "உண்மையான Strong & Free வகுப்பு"}
+          </h2>
+          <p style={{fontSize:"1.05rem",color:"rgba(26,71,49,0.68)",maxWidth:520,margin:"0 auto"}}>
+            {lang === "en"
+              ? "See what a typical session looks like — and the community you'd be joining."
+              : "ஒரு வழக்கமான அமர்வு எப்படி இருக்கும் என்பதை பாருங்கள்."}
+          </p>
+        </div>
+        <div style={{maxWidth:760,margin:"0 auto",borderRadius:20,overflow:"hidden",boxShadow:"0 4px 32px rgba(26,71,49,0.12)"}}>
+          <div style={{position:"relative",paddingBottom:"56.25%",height:0}}>
+            <iframe
+              src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?rel=0&modestbranding=1`}
+              style={{position:"absolute",top:0,left:0,width:"100%",height:"100%",border:0}}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Strong and Free class preview"
+            />
+          </div>
+        </div>
+        <div style={{textAlign:"center",marginTop:28}}>
+          <a className="btn-cta btn-lg" href="/subscribe.html">
+            {lang === "en" ? "Join This Community →" : "இந்த சமூகத்தில் சேருங்கள் →"}
+          </a>
+        </div>
+      </FadeUp>
+    </section>
+  );
+}
+
 function Header({ lang, setLang }) {
   const t = T[lang].nav;
   const [scrolled, setScrolled] = React.useState(false);
@@ -253,7 +292,7 @@ function Header({ lang, setLang }) {
   return (
     <header className={`hdr${scrolled ? " scrolled" : ""}`}>
       <div className="hdr-inner">
-        <button className="logo-btn" onClick={() => window.scrollToSection({top:0,behavior:"smooth"})}>
+        <button className="logo-btn" onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>
           <img src={LOGO} alt="Strong & Free" className="logo-img" />
         </button>
         <nav className={`main-nav${open ? " open" : ""}`}>
@@ -264,7 +303,7 @@ function Header({ lang, setLang }) {
           ))}
         </nav>
         <div className="hdr-right">
-          <a className="btn-cta" href={WA_START} target="_blank" rel="noopener noreferrer">{t.join}</a>
+          <a className="btn-cta" href="/subscribe.html">{t.join}</a>
           <button className={`burger${open ? " open" : ""}`} onClick={() => setOpen(o => !o)} aria-label="Menu">
             <span /><span /><span />
           </button>
@@ -541,7 +580,7 @@ function TestimonialCarousel({ lang }) {
 
 function WhatsAppCTA({ lang }) {
   return (
-    <section id="intake" className="section bg-dark">
+    <section id="contact" className="section bg-dark">
       <FadeUp>
         <div className="wa-cta-inner">
           <img src={LOGO} alt="Strong & Free" className="contact-logo" />
@@ -679,6 +718,7 @@ function App() {
       <main>
         <Hero lang={lang} variation={tweaks.variation} />
         <TrustBar lang={lang} />
+        <VideoSection lang={lang} />
         <WhoFor lang={lang} />
         <TestimonialCarousel lang={lang} />
         <Programs lang={lang} />

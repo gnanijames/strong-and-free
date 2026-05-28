@@ -1,6 +1,10 @@
 import { google } from 'googleapis';
 
-const SEND_AS = process.env.COACH_EMAIL || 'hello@movestrongandfree.com';
+// SEND_AS is always the Workspace account — domain-wide delegation requires this
+const SEND_AS = 'hello@movestrongandfree.com';
+
+// COACH_EMAIL is where notifications are delivered (can be any email)
+export const COACH_EMAIL = process.env.COACH_EMAIL || 'hello@movestrongandfree.com';
 
 function getAuth(subject) {
   const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
@@ -22,8 +26,6 @@ export function getCalendar() {
 export function getGmail() {
   return google.gmail({ version: 'v1', auth: getAuth(SEND_AS) });
 }
-
-export const COACH_EMAIL    = SEND_AS;
 export const CALENDAR_ID    = process.env.GOOGLE_CALENDAR_ID || 'primary';
 export const CLASS_CALENDAR = process.env.CLASS_CALENDAR_ID;
 

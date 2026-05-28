@@ -32,6 +32,7 @@ export default async function handler(req, res) {
       mode: 'subscription',
       customer: customer.id,
       line_items: [{ price: PRICES.subscription, quantity: 1 }],
+      phone_number_collection: { enabled: true },
       success_url: `${BASE_URL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url:  `${BASE_URL}/cancel.html`,
       subscription_data: {
@@ -56,6 +57,6 @@ export default async function handler(req, res) {
 
   } catch (err) {
     console.error('create-subscription error:', err);
-    return res.status(500).json({ error: err.message || 'Could not create checkout session.' });
+    return res.status(500).json({ error: 'Could not create checkout session.' });
   }
 }

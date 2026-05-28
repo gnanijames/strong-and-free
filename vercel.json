@@ -1,8 +1,13 @@
 {
   "crons": [
-    {
-      "path": "/api/rotate-meet-link",
-      "schedule": "0 9 1 * *"
-    }
+    { "path": "/api/rotate-meet-link",         "schedule": "0 9 1 * *"   },
+
+    { "path": "/api/reminders/class-24hr",     "schedule": "0 13 * * 0"  },
+    { "path": "/api/reminders/class-24hr",     "schedule": "0 13 * * 2"  },
+    { "path": "/api/reminders/class-24hr",     "schedule": "0 13 * * 4"  },
+
+    { "path": "/api/reminders/class-morning",  "schedule": "0 12 * * 1"  },
+    { "path": "/api/reminders/class-morning",  "schedule": "0 12 * * 3"  },
+    { "path": "/api/reminders/class-morning",  "schedule": "0 12 * * 5"  }
   ]
 }

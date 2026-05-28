@@ -51,45 +51,55 @@ function btn(href, text, color = BRAND_COLOR) {
 
 // ── Welcome email (new subscriber) ───────────────────────────────────────────
 export function welcomeSubscriberEmail({ name, classSchedule }) {
-  const subject = 'Welcome to Strong and Free! 🎉 Here\'s everything you need.';
+  const subject = 'Welcome to Strong and Free! Here\'s everything you need.';
+  const whatsappLink = 'https://chat.whatsapp.com/JRausmtyM1f4uVSTMDDIMC?mode=gi_t';
   const html = layout(`
     <h1 style="font-family:Georgia,serif;font-size:26px;margin:0 0 16px;">Welcome, ${name}!</h1>
     <p>You're officially part of the Strong and Free community. We're so glad you're here.</p>
     <p>Here's what happens next:</p>
     <ul style="padding-left:20px;color:#2c2c2c;">
       <li style="margin-bottom:8px;">You'll receive your <strong>class link by email before each session</strong> — just click it to join</li>
-      <li style="margin-bottom:8px;">A reminder will arrive <strong>24 hours and 1 hour before every class</strong></li>
+      <li style="margin-bottom:8px;">A reminder will arrive <strong>before every class</strong></li>
       <li style="margin-bottom:8px;">No app to download — Google Meet runs right in your browser</li>
     </ul>
     <div style="background:#f5efe6;border-radius:12px;padding:20px 24px;margin:24px 0;">
-      <p style="margin:0 0 10px;font-weight:600;font-size:15px;">Upcoming class schedule</p>
-      <p style="margin:0;font-size:15px;color:#2c2c2c;">${classSchedule || 'Your schedule details are coming soon — watch for a follow-up email.'}</p>
+      <p style="margin:0 0 10px;font-weight:600;font-size:15px;">Your class schedule</p>
+      <p style="margin:0;font-size:15px;color:#2c2c2c;">${classSchedule || 'Monday, Wednesday, or Friday at 10:00 AM Eastern Time — choose the day that works for you.'}</p>
+    </div>
+    <div style="background:#f5efe6;border-radius:12px;padding:20px 24px;margin:24px 0;text-align:center;">
+      <p style="margin:0 0 12px;font-weight:600;font-size:15px;">Join our WhatsApp community</p>
+      <p style="margin:0 0 16px;font-size:14px;color:#555;">Connect with other members, get class reminders, and stay motivated between sessions.</p>
+      ${btn(whatsappLink, 'Join the WhatsApp Group', SAGE_COLOR)}
     </div>
     <h3 style="font-family:Georgia,serif;font-size:18px;margin:24px 0 12px;">How to join your first class</h3>
     <ol style="padding-left:20px;color:#2c2c2c;">
-      <li style="margin-bottom:8px;">Watch for an email from us with your class link (we'll send it the day before)</li>
+      <li style="margin-bottom:8px;">Watch for an email from us with your class link (we'll send it before each class)</li>
       <li style="margin-bottom:8px;">At class time, click the link — it opens in your web browser</li>
-      <li style="margin-bottom:8px;">Allow your camera and microphone when prompted (you can keep camera off if you prefer)</li>
-      <li style="margin-bottom:8px;">You'll enter the class and see Gnani — you're in!</li>
+      <li style="margin-bottom:8px;">Keep your camera off if you prefer — just show up and move</li>
+      <li style="margin-bottom:8px;">You'll see Gnani and your classmates — you're in!</li>
     </ol>
-    <p><strong>Need help?</strong> Reply to this email or reach us at <a href="mailto:hello@movestrongandfree.com" style="color:${BRAND_COLOR};">hello@movestrongandfree.com</a>. We're happy to walk you through it.</p>
+    <p><strong>Need help?</strong> Reply to this email or reach us at <a href="mailto:hello@movestrongandfree.com" style="color:${BRAND_COLOR};">hello@movestrongandfree.com</a>.</p>
     <p>See you in class,<br/><strong>Gnani</strong><br/>Strong and Free</p>
   `);
   return { subject, html };
 }
 
 // ── New subscriber notification to Gnani ─────────────────────────────────────
-export function newSubscriberNotificationEmail({ name, email, isGift, recipientName, recipientEmail }) {
+export function newSubscriberNotificationEmail({ name, email, phone, isGift, recipientName, recipientEmail }) {
   const subject = `New subscriber: ${name}`;
+  const waText  = encodeURIComponent(`Hi ${name}! Welcome to Strong and Free 👋 This is Gnani. So glad you joined! Your first class is Mon, Wed, or Fri at 10 AM ET. Any questions just reply here.`);
+  const waLink  = phone ? `https://wa.me/${phone.replace(/\D/g,'')}?text=${waText}` : null;
   const html = layout(`
     <h2 style="font-family:Georgia,serif;font-size:22px;margin:0 0 16px;">New subscriber 🎉</h2>
     <table style="width:100%;border-collapse:collapse;font-size:15px;">
       <tr><td style="padding:8px 0;color:#6b6b6b;width:140px;">Name</td><td style="padding:8px 0;font-weight:600;">${name}</td></tr>
       <tr><td style="padding:8px 0;color:#6b6b6b;">Email</td><td style="padding:8px 0;">${email}</td></tr>
+      ${phone ? `<tr><td style="padding:8px 0;color:#6b6b6b;">Phone</td><td style="padding:8px 0;">${phone}</td></tr>` : ''}
       ${isGift ? `<tr><td style="padding:8px 0;color:#6b6b6b;">Gift for</td><td style="padding:8px 0;">${recipientName} (${recipientEmail})</td></tr>` : ''}
       <tr><td style="padding:8px 0;color:#6b6b6b;">Amount</td><td style="padding:8px 0;">$89/month</td></tr>
     </table>
     <br/>
+    ${waLink ? `${btn(waLink, '💬 Send WhatsApp Welcome', SAGE_COLOR)}<br/><br/>` : ''}
     ${btn(`${BASE_URL}/admin`, 'View Admin Dashboard')}
   `);
   return { subject, html };

@@ -1,5 +1,12 @@
 import { stripe } from '../_lib/stripe.js';
 import { sendEmail, getCalendar, COACH_EMAIL, CLASS_CALENDAR } from '../_lib/google.js';
+
+const NOTIFY = [COACH_EMAIL, 'hello@movestrongandfree.com'].filter((v, i, a) => v && a.indexOf(v) === i);
+async function notifyAll(subject, html) {
+  await Promise.all(NOTIFY.map(to => sendEmail({ to, subject, html })));
+}
+import { sendWhatsApp } from '../_lib/twilio.js';
+import { waWelcome } from '../_lib/whatsapp-messages.js';
 import {
   welcomeSubscriberEmail,
   newSubscriberNotificationEmail,
@@ -85,18 +92,17 @@ export default async function handler(req, res) {
 
         // Notify Gnani
         const coach = cancellationNotificationEmail({ name, email, endDate });
-        await sendEmail({ to: COACH_EMAIL, subject: coach.subject, html: coach.html });
+        await notifyAll(coach.subject, coach.html);
         break;
       }
 
       // ── Dispute opened — alert Gnani immediately ────────────────────────────
       case 'charge.dispute.created': {
         const dispute = event.data.object;
-        await sendEmail({
-          to: COACH_EMAIL,
-          subject: `⚠️ Dispute opened — $${(dispute.amount / 100).toFixed(2)}`,
-          html: `<p>A dispute has been opened for $${(dispute.amount / 100).toFixed(2)}. Log in to your <a href="https://dashboard.stripe.com/disputes">Stripe dashboard</a> to respond.</p><p>Charge ID: ${dispute.charge}</p>`,
-        });
+        await notifyAll(
+          `⚠️ Dispute opened — $${(dispute.amount / 100).toFixed(2)}`,
+          `<p>A dispute has been opened for $${(dispute.amount / 100).toFixed(2)}. Log in to your <a href="https://dashboard.stripe.com/disputes">Stripe dashboard</a> to respond.</p><p>Charge ID: ${dispute.charge}</p>`,
+        );
         break;
       }
     }
@@ -116,20 +122,39 @@ async function handleNewSubscriber(session) {
   const email     = meta.member_email || session.customer_details?.email || '';
   const isGift    = session.metadata?.is_gift === 'true';
   const classSchedule = process.env.CLASS_SCHEDULE_TEXT || 'Monday, Wednesday, and Friday at 10:00 AM Eastern Time';
+  const meetLink  = process.env.CURRENT_MEET_LINK || 'https://meet.google.com/awb-zjcz-cmx';
+
+  // Save phone to Stripe customer metadata for WhatsApp reminders
+  const phone = session.customer_details?.phone;
+  if (phone && session.customer) {
+    await stripe.customers.update(session.customer, {
+      metadata: { whatsapp_phone: phone },
+    });
+  }
 
   // Welcome email to subscriber/recipient
   const welcome = welcomeSubscriberEmail({ name, classSchedule });
   await sendEmail({ to: email, subject: welcome.subject, html: welcome.html });
 
+  // WhatsApp welcome if phone provided
+  if (phone) {
+    try {
+      await sendWhatsApp(phone, waWelcome({ name, meetLink }));
+    } catch (err) {
+      console.error('WhatsApp welcome failed:', err.message);
+    }
+  }
+
   // Notify Gnani
   const notify = newSubscriberNotificationEmail({
     name,
     email,
+    phone: phone || null,
     isGift,
     recipientName:  meta.member_name,
     recipientEmail: meta.member_email,
   });
-  await sendEmail({ to: COACH_EMAIL, subject: notify.subject, html: notify.html });
+  await notifyAll(notify.subject, notify.html);
 
   // Add to Google Calendar recurring class event as attendee
   const currentMeetLink = process.env.CURRENT_MEET_LINK;
