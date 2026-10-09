@@ -38,7 +38,7 @@ const T = {
         price:"$89",
         period:"/month",
         desc:"One live class per week — your choice of Monday, Wednesday, or Friday at 9:30 AM ET. No app, no gym. Real coaching, real community, real results.",
-        features:["1 live class/week — Mon, Wed, or Fri","Google Meet — no download needed","Community WhatsApp group","Monthly progress check-in","⭐ In-person Success & Achievement Gathering every 12 weeks","Cancel anytime"],
+        features:["1 live class/week — Mon, Wed, or Fri","Google Meet — no download needed","Community WhatsApp group","Monthly progress check-in","⭐ In-person Success & Achievement Gathering every four weeks","Cancel anytime"],
         cta:"Subscribe Now",
         href:"/subscribe.html",
       },
@@ -49,7 +49,7 @@ const T = {
         price:"$129",
         period:"/month",
         desc:"Two live classes per week for faster strength gains and deeper accountability. Everything in Move 1× — just twice the momentum.",
-        features:["2 live classes/week — choose your days","Google Meet — no download needed","Community WhatsApp group","Monthly progress check-in","⭐ In-person Success & Achievement Gathering every 12 weeks","Cancel anytime"],
+        features:["2 live classes/week — choose your days","Google Meet — no download needed","Community WhatsApp group","Monthly progress check-in","⭐ In-person Success & Achievement Gathering every four weeks","Cancel anytime"],
         cta:"Subscribe Now — 2×",
         href:"/subscribe.html?plan=2x",
       },
@@ -80,7 +80,7 @@ const T = {
       { day:"Monday", time:"9:30 – 10:30 AM ET", format:"Choose one" },
       { day:"Wednesday", time:"9:30 – 10:30 AM ET", format:"Choose one" },
       { day:"Friday", time:"9:30 – 10:30 AM ET", format:"Choose one" },
-      { day:"Every 3 Months", time:"In-Person Gathering", format:"🏆 Success & Achievement" },
+      { day:"Every 4 Weeks", time:"In-Person Gathering", format:"🏆 Success & Achievement" },
     ],
     testimonials_title:"What Our Community Says",
     faqs:[
@@ -135,7 +135,7 @@ const T = {
         price:"$89",
         period:"/மாதம்",
         desc:"Google Meet வழியாக வாரம் ஒரு நேரடி வகுப்பு — திங்கள், புதன் அல்லது வெள்ளி காலை 10 ET. பதிவிறக்கம் இல்லை, செயலி இல்லை.",
-        features:["திங், புத அல்லது வெள் — உங்கள் தேர்வு, காலை 9:30 ET","Google Meet — எந்த உலாவியிலும்","சமூக WhatsApp குழு","மாதாந்திர முன்னேற்ற சரிபார்ப்பு","3 மாதத்திற்கொரு முறை நேரில் வெற்றி & சாதனை கொண்டாட்டம்","எந்நேரமும் ரத்து செய்யலாம்"],
+        features:["திங், புத அல்லது வெள் — உங்கள் தேர்வு, காலை 9:30 ET","Google Meet — எந்த உலாவியிலும்","சமூக WhatsApp குழு","மாதாந்திர முன்னேற்ற சரிபார்ப்பு","4 வாரத்திற்கொரு முறை நேரில் வெற்றி & சாதனை கொண்டாட்டம்","எந்நேரமும் ரத்து செய்யலாம்"],
         cta:"இப்போதே சேருங்கள்",
         href:"/subscribe.html",
       },
@@ -440,7 +440,7 @@ function Programs({ lang }) {
                 <p className="prog-desc">{p.desc}</p>
                 <ul className="prog-features">
                   {p.features.map((f, j) => {
-                    const highlight = f.includes("12 weeks");
+                    const highlight = f.includes("four weeks");
                     return (
                       <li key={j} style={highlight ? {fontWeight:700, background:"rgba(255,255,255,0.1)", borderRadius:"6px", padding:"4px 6px", margin:"4px 0"} : {}}>
                         <span className="check">{highlight ? "🏆" : "✓"}</span>{f.replace("⭐ ","")}
