@@ -7,51 +7,51 @@ const T = {
       h1a:"This is your",
       h1b:"movement community.",
       h1c:"This is your pain killer strength training.",
-      sub:"Strong & Free is live online group fitness designed specifically for adults 55+. Build real strength, move without pain, and stay independent — from home, once a week.",
+      sub:"Move Strong & Free is live online group fitness designed specifically for adults 55+. Build real strength, move without pain, and stay independent — no travel, no weather, no excuses. Just you, getting better every week.",
       cta1:"Chat with us to start your journey →",
       cta2:"See the program",
     },
     trust: [
       { value:"55+", label:"Ages We Serve" },
-      { value:"Move Weekly", label:"Choose Mon · Wed · or Fri · 10–10:45 AM ET" },
+      { value:"Move Weekly", label:"Choose Mon · Wed · or Fri · 9:30–10:30 AM ET" },
       { value:"$89", label:"Per Month, No Contract" },
       { value:"Google Meet", label:"No App Required" },
     ],
-    programs_title:"What We Offer",
-    programs_sub:"A group membership, and two ways to get personal coaching. Simple.",
+    programs_title:"Choose How You Start",
+    programs_sub:"Try the community free, then step up when you're ready.",
     programs:[
       {
-        type:"group",
-        name:"Group Movement",
+        type:"free",
+        name:"Community",
+        tag:"Start Here — Free",
+        price:"Free",
+        period:"",
+        desc:"Join our online community. Get one free live class, movement tips, and support from people just like you. No credit card, no commitment.",
+        features:["1 free live online class","Access to community WhatsApp group","Weekly movement tips by email","Meet Gnani and the group","Upgrade anytime"],
+        cta:"Join Free →",
+        href:"",
+      },
+      {
+        type:"group1x",
+        name:"Move 1×",
         tag:"Most Popular",
         price:"$89",
         period:"/month",
-        desc:"One live class per week via Google Meet — your choice of Monday, Wednesday, or Friday at 10 AM ET. No download, no app. Strength, balance, and mobility in a warm group that knows your name.",
-        features:["Your choice: Mon, Wed, or Fri at 10 AM ET","Google Meet — open in any browser","Community WhatsApp group","Monthly movement progress check-in","Cancel anytime"],
+        desc:"One live class per week — your choice of Monday, Wednesday, or Friday at 9:30 AM ET. No app, no gym. Real coaching, real community, real results.",
+        features:["1 live class/week — Mon, Wed, or Fri","Google Meet — no download needed","Community WhatsApp group","Monthly progress check-in","⭐ In-person Success & Achievement Gathering every four weeks","Cancel anytime"],
         cta:"Subscribe Now",
         href:"/subscribe.html",
       },
       {
-        type:"remote",
-        name:"Remote Consultation",
-        tag:"One-on-One",
-        price:"$100",
-        period:"/session",
-        desc:"A 30-minute private video call with Gnani. Ideal if you want a personalised movement plan before joining the group, or need specific guidance.",
-        features:["30-minute 1:1 video call","Movement assessment + plan","Book a time that suits you","Includes follow-up notes","No commitment required"],
-        cta:"Book a Remote Call",
-        href:"/book.html?type=remote",
-      },
-      {
-        type:"inperson",
-        name:"In-Person Consultation",
-        tag:"Toronto · Markham",
-        price:"$250",
-        period:"/session",
-        desc:"A 30-minute in-person session in Markham. Hands-on movement assessment, posture analysis, and a personalised plan you can start that day.",
-        features:["30-minute in-person session","Markham (address confirmed on booking)","Full movement + posture assessment","Take-home movement plan","Priority access to group program"],
-        cta:"Book In Person",
-        href:"/book.html?type=inperson",
+        type:"group2x",
+        name:"Move 2×",
+        tag:"Best Results",
+        price:"$129",
+        period:"/month",
+        desc:"Two live classes per week for faster strength gains and deeper accountability. Everything in Move 1× — just twice the momentum.",
+        features:["2 live classes/week — choose your days","Google Meet — no download needed","Community WhatsApp group","Monthly progress check-in","⭐ In-person Success & Achievement Gathering every four weeks","Cancel anytime"],
+        cta:"Subscribe Now — 2×",
+        href:"/subscribe.html?plan=2x",
       },
     ],
     for_title:"You are stronger than you think.",
@@ -69,17 +69,18 @@ const T = {
     ],
     about_label:"Gnani",
     about_name:"Gnani",
-    about_title:"Founder, Strong & Free · Toronto",
-    about_body1:"I started Strong & Free because I kept seeing the same thing. Adults in their 50s, 60s, and 70s who were strong, capable, and determined — but who'd been told to slow down, or handed programs that were never built for them.",
+    about_title:"Founder, Move Strong & Free · Toronto",
+    about_body1:"I started Move Strong & Free because I kept seeing the same thing. Adults in their 50s, 60s, and 70s who were strong, capable, and determined — but who'd been told to slow down, or handed programs that were never built for them.",
     about_body2:"For over 20 years I've helped people over 55 overcome pain and get stronger for the parts of life that matter most. The garden. The grandkids. The stairs. The trip you keep putting off.",
     about_body3:"I believe your best years of movement are still ahead of you. My coaching meets you where you are, adapts to your body, and gets real results. And it happens inside a community that understands your life.",
     about_body4:"The promise here is simple. Aging doesn't have to mean losing your independence. With the right strength, balance, and energy, you stay on your feet, stay sharp, and keep doing what you love — on your own terms.",
     about_quote:"“Your body has carried you this far. Let us help it carry you further.”",
     schedule_label:"Class Schedule",
     schedule:[
-      { day:"Monday", time:"10:00 – 10:45 AM ET", format:"Choose one" },
-      { day:"Wednesday", time:"10:00 – 10:45 AM ET", format:"Choose one" },
-      { day:"Friday", time:"10:00 – 10:45 AM ET", format:"Choose one" },
+      { day:"Monday", time:"9:30 – 10:30 AM ET", format:"Choose one" },
+      { day:"Wednesday", time:"9:30 – 10:30 AM ET", format:"Choose one" },
+      { day:"Friday", time:"9:30 – 10:30 AM ET", format:"Choose one" },
+      { day:"Every 4 Weeks", time:"In-Person Gathering", format:"🏆 Success & Achievement" },
     ],
     testimonials_title:"What Our Community Says",
     faqs:[
@@ -104,7 +105,7 @@ const T = {
     form_sub:"Tell us a little about yourself. We will be in touch with you within 24 hours.",
     form_fields:{ first:"First Name", last:"Last Name", phone:"Phone Number", email:"Email Address", reason:"What brings you here? (optional)", reason_ph:"e.g. I want to move more freely, manage my balance, stay active for my grandchildren…", submit:"Send My Details →", sending:"Sending…", success:"Thank you! We will be in touch with you within 24 hours.", error:"Something went wrong. Please email hello@movestrongandfree.com" },
     footer_tagline:"Strength in Community.",
-    footer_copy:"© 2026 Strong & Free · Movement for Life · A program by Gnani Life Systems · Toronto",
+    footer_copy:"© 2026 Move Strong & Free · Movement for Life · Toronto",
     mobile_cta:"I'm Interested — We'll Be in Touch",
   },
   ta: {
@@ -114,13 +115,13 @@ const T = {
       h1a:"இது உங்கள்",
       h1b:"இயக்க சமூகம்.",
       h1c:"இது உங்கள் வலி நிவாரண வலிமை பயிற்சி.",
-      sub:"Strong & Free என்பது 55 வயதுக்கு மேற்பட்டவர்களுக்கான நேரடி ஆன்லைன் குழு உடற்பயிற்சி. வீட்டிலிருந்தே வாரம் ஒரு முறை உண்மையான வலிமையை வளர்த்து, வலியின்றி நகர்ந்து, சுதந்திரமாக வாழுங்கள்.",
+      sub:"Move Strong & Free என்பது 55 வயதுக்கு மேற்பட்டவர்களுக்கான நேரடி ஆன்லைன் குழு உடற்பயிற்சி. வீட்டிலிருந்தே வாரம் ஒரு முறை உண்மையான வலிமையை வளர்த்து, வலியின்றி நகர்ந்து, சுதந்திரமாக வாழுங்கள்.",
       cta1:"குழுவில் சேருங்கள் — $89/மாதம்",
       cta2:"முதலில் எங்களுடன் இணையுங்கள்",
     },
     trust: [
       { value:"55+", label:"நாங்கள் சேவிக்கும் வயது" },
-      { value:"வாரம் ஒரு முறை", label:"திங் · புத · அல்லது வெள் · 10–10:45 AM ET" },
+      { value:"வாரம் ஒரு முறை", label:"திங் · புத · அல்லது வெள் · 9:30–10:30 AM ET" },
       { value:"$89", label:"மாதம், ஒப்பந்தம் இல்லை" },
       { value:"Google Meet", label:"செயலி தேவையில்லை" },
     ],
@@ -134,7 +135,7 @@ const T = {
         price:"$89",
         period:"/மாதம்",
         desc:"Google Meet வழியாக வாரம் ஒரு நேரடி வகுப்பு — திங்கள், புதன் அல்லது வெள்ளி காலை 10 ET. பதிவிறக்கம் இல்லை, செயலி இல்லை.",
-        features:["திங், புத அல்லது வெள் — உங்கள் தேர்வு, காலை 10 ET","Google Meet — எந்த உலாவியிலும்","சமூக WhatsApp குழு","மாதாந்திர முன்னேற்ற சரிபார்ப்பு","எந்நேரமும் ரத்து செய்யலாம்"],
+        features:["திங், புத அல்லது வெள் — உங்கள் தேர்வு, காலை 9:30 ET","Google Meet — எந்த உலாவியிலும்","சமூக WhatsApp குழு","மாதாந்திர முன்னேற்ற சரிபார்ப்பு","4 வாரத்திற்கொரு முறை நேரில் வெற்றி & சாதனை கொண்டாட்டம்","எந்நேரமும் ரத்து செய்யலாம்"],
         cta:"இப்போதே சேருங்கள்",
         href:"/subscribe.html",
       },
@@ -176,15 +177,15 @@ const T = {
     ],
     about_label:"Gnani",
     about_name:"Gnani",
-    about_title:"நிறுவனர், Strong & Free · டொரொண்டோ",
-    about_body1:"நான் Strong & Free ஐ ஆரம்பித்தேன் ஏனென்றால் மீண்டும் மீண்டும் ஒரே விஷயம் பார்த்தேன்: 50, 60, 70 வயதிலுள்ளவர்கள் வலிமையாக, திறனாக, உறுதியாக இருந்தனர் — ஆனால் மெதுவாக போகச் சொல்லப்பட்டார்கள்.",
+    about_title:"நிறுவனர், Move Strong & Free · டொரொண்டோ",
+    about_body1:"நான் Move Strong & Free ஐ ஆரம்பித்தேன் ஏனென்றால் மீண்டும் மீண்டும் ஒரே விஷயம் பார்த்தேன்: 50, 60, 70 வயதிலுள்ளவர்கள் வலிமையாக, திறனாக, உறுதியாக இருந்தனர் — ஆனால் மெதுவாக போகச் சொல்லப்பட்டார்கள்.",
     about_body2:"உங்கள் இயக்கத்தின் சிறந்த ஆண்டுகள் இன்னும் உங்கள் முன்னால் உள்ளன. என் பயிற்சி உங்களை இருக்கும் இடத்தில் சந்திக்கிறது, உங்கள் உடலுக்கு ஏற்றபடி மாற்றிக்கொள்கிறது.",
     about_quote:"“உங்கள் உடல் இதுவரை உங்களை சுமந்தது. நாம் அதை மேலும் சுமக்க உதவுவோம்.”",
     schedule_label:"வகுப்பு அட்டவணை",
     schedule:[
-      { day:"திங்கள்", time:"காலை 10:00 ET", format:"Google Meet" },
-      { day:"புதன்", time:"காலை 10:00 ET", format:"Google Meet" },
-      { day:"வெள்ளி", time:"காலை 10:00 ET", format:"Google Meet" },
+      { day:"திங்கள்", time:"காலை 9:30 ET", format:"Google Meet" },
+      { day:"புதன்", time:"காலை 9:30 ET", format:"Google Meet" },
+      { day:"வெள்ளி", time:"காலை 9:30 ET", format:"Google Meet" },
     ],
     testimonials_title:"எங்கள் சமூகம் என்ன சொல்கிறது",
     faqs:[
@@ -207,14 +208,14 @@ const T = {
     form_sub:"உங்களைப் பற்றி கொஞ்சம் சொல்லுங்கள். 24 மணி நேரத்திற்குள் தொடர்பு கொள்கிறோம்.",
     form_fields:{ first:"முதல் பெயர்", last:"கடைசி பெயர்", phone:"தொலைபேசி எண்", email:"மின்னஞ்சல்", reason:"நீங்கள் ஏன் இங்கே வந்தீர்கள்? (விருப்பமானது)", reason_ph:"எ.கா. சுதந்திரமாக நகர விரும்புகிறேன்…", submit:"என் விவரங்களை அனுப்புங்கள் →", sending:"அனுப்புகிறோம்…", success:"நன்றி! 24 மணி நேரத்திற்குள் தொடர்பு கொள்கிறோம்.", error:"ஏதோ தவறு நடந்தது. hello@movestrongandfree.com க்கு மின்னஞ்சல் செய்யுங்கள்." },
     footer_tagline:"சமூகத்தில் வலிமை.",
-    footer_copy:"© 2026 Strong & Free · வாழ்க்கைக்கான இயக்கம் · Gnani Life Systems · டொரொண்டோ",
+    footer_copy:"© 2026 Move Strong & Free · வாழ்க்கைக்கான இயக்கம் · டொரொண்டோ",
     mobile_cta:"ஆர்வமாக இருக்கிறேன் — தொடர்பு கொள்ளுங்கள்",
   }
 };
 
-const LOGO = "/images/strong-and-free-logo.png";
+const LOGO = "/images/logo.png";
 const WHATSAPP = "https://chat.whatsapp.com/JRausmtyM1f4uVSTMDDIMC?mode=gi_t";
-const WA_START = "https://wa.me/14166718343?text=" + encodeURIComponent("Hi! I'd like to learn more about Strong and Free");
+const WA_START = "https://wa.me/16474632873?text=" + encodeURIComponent("Hi! I'd like to learn more about Move Strong and Free");
 // Paste your YouTube video ID here when your video is uploaded, e.g. 'dQw4w9WgXcQ'
 const YOUTUBE_VIDEO_ID = '';
 
@@ -250,7 +251,7 @@ function VideoSection({ lang }) {
         <div style={{textAlign:"center",marginBottom:32}}>
           <p className="sec-label">{lang === "en" ? "See It In Action" : "இயக்கத்தில் பாருங்கள்"}</p>
           <h2 style={{fontFamily:"Georgia,serif",fontSize:"clamp(1.6rem,4vw,2.2rem)",color:"var(--forest)",margin:"8px 0 12px",fontWeight:"bold"}}>
-            {lang === "en" ? "A real Strong & Free class" : "உண்மையான Strong & Free வகுப்பு"}
+            {lang === "en" ? "A real Move Strong & Free class" : "உண்மையான Move Strong & Free வகுப்பு"}
           </h2>
           <p style={{fontSize:"1.05rem",color:"rgba(26,71,49,0.68)",maxWidth:520,margin:"0 auto"}}>
             {lang === "en"
@@ -265,7 +266,7 @@ function VideoSection({ lang }) {
               style={{position:"absolute",top:0,left:0,width:"100%",height:"100%",border:0}}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              title="Strong and Free class preview"
+              title="Move Strong and Free class preview"
             />
           </div>
         </div>
@@ -293,7 +294,7 @@ function Header({ lang, setLang }) {
     <header className={`hdr${scrolled ? " scrolled" : ""}`}>
       <div className="hdr-inner">
         <button className="logo-btn" onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>
-          <img src={LOGO} alt="Strong & Free" className="logo-img" />
+          <img src={LOGO} alt="Move Strong & Free" className="logo-img" />
         </button>
         <nav className={`main-nav${open ? " open" : ""}`}>
           {links.map(k => (
@@ -373,6 +374,51 @@ function WhoFor({ lang }) {
   );
 }
 
+function FreeSignupCard({ p }) {
+  const [email, setEmail] = React.useState("");
+  const [done, setDone] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const submit = async () => {
+    if (!email) return;
+    setLoading(true);
+    try {
+      await fetch("/api/community-signup", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ email }) });
+    } catch(e) {}
+    setDone(true);
+    setLoading(false);
+  };
+  return (
+    <div className="prog-card">
+      <span className="prog-tag">{p.tag}</span>
+      <h3 className="prog-name">{p.name}</h3>
+      <div className="prog-price">{p.price}</div>
+      <p className="prog-desc">{p.desc}</p>
+      <ul className="prog-features">
+        {p.features.map((f, j) => <li key={j}><span className="check">✓</span>{f}</li>)}
+      </ul>
+      {done ? (
+        <div style={{marginTop:"auto",padding:"14px",background:"rgba(45,106,79,0.12)",borderRadius:"10px",textAlign:"center",fontWeight:600,color:"var(--forest)"}}>
+          ✓ You're in! Check your inbox.
+        </div>
+      ) : (
+        <div style={{marginTop:"auto",display:"flex",flexDirection:"column",gap:"8px"}}>
+          <input
+            type="email"
+            placeholder="your@email.com"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            onKeyDown={e => e.key === "Enter" && submit()}
+            style={{padding:"12px 14px",borderRadius:"8px",border:"1.5px solid var(--border)",fontSize:"0.95rem",fontFamily:"inherit",outline:"none"}}
+          />
+          <button className="prog-btn btn-outline" onClick={submit} disabled={loading}>
+            {loading ? "Sending…" : p.cta}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Programs({ lang }) {
   const t = T[lang];
   return (
@@ -383,29 +429,34 @@ function Programs({ lang }) {
           <p className="sec-sub">{t.programs_sub}</p>
         </div>
         <div className="programs-grid">
-          {t.programs.map((p, i) => (
-            <div key={i} className={`prog-card${i === 0 ? " prog-featured" : ""}`}>
-              <span className="prog-tag">{p.tag}</span>
-              <h3 className="prog-name">{p.name}</h3>
-              <div className="prog-price">{p.price}<span className="prog-period">{p.period}</span></div>
-              <p className="prog-desc">{p.desc}</p>
-              <ul className="prog-features">
-                {p.features.map((f, j) => <li key={j}><span className="check">✓</span>{f}</li>)}
-              </ul>
-              <button
-                className={`prog-btn${i === 0 ? " btn-cta" : " btn-outline"}`}
-                onClick={() => { window.location.href = p.href; }}
-              >
-                {p.cta}
-              </button>
-              {p.type === "group" && (
-                <a href={WHATSAPP} target="_blank" rel="noopener"
-                  style={{display:"block",textAlign:"center",marginTop:"12px",fontSize:"0.85rem",color:"rgba(250,246,240,0.65)",textDecoration:"underline"}}>
-                  {lang === "en" ? "Or join our WhatsApp community first →" : "அல்லது WhatsApp குழுவில் சேருங்கள் →"}
-                </a>
-              )}
-            </div>
-          ))}
+          {t.programs.map((p, i) => {
+            if (p.type === "free") return <FreeSignupCard key={i} p={p} />;
+            const featured = p.type === "group1x";
+            return (
+              <div key={i} className={`prog-card${featured ? " prog-featured" : ""}`}>
+                <span className="prog-tag">{p.tag}</span>
+                <h3 className="prog-name">{p.name}</h3>
+                <div className="prog-price">{p.price}<span className="prog-period">{p.period}</span></div>
+                <p className="prog-desc">{p.desc}</p>
+                <ul className="prog-features">
+                  {p.features.map((f, j) => {
+                    const highlight = f.includes("four weeks");
+                    return (
+                      <li key={j} style={highlight ? {fontWeight:700, background:"rgba(255,255,255,0.1)", borderRadius:"6px", padding:"4px 6px", margin:"4px 0"} : {}}>
+                        <span className="check">{highlight ? "🏆" : "✓"}</span>{f.replace("⭐ ","")}
+                      </li>
+                    );
+                  })}
+                </ul>
+                <button
+                  className={`prog-btn${featured ? " btn-cta" : " btn-outline"}`}
+                  onClick={() => { window.location.href = p.href; }}
+                >
+                  {p.cta}
+                </button>
+              </div>
+            );
+          })}
         </div>
       </FadeUp>
     </section>
@@ -481,7 +532,7 @@ const MEMBERS_TA = [
   { name:"ராஜன் P.", age:72, city:"மார்க்கம்", quote:"என் மருத்துவர் என் சமநிலை மதிப்பெண்களில் வியப்படைகிறார். மூன்று மாதங்களில் 55 வயதிலிருந்ததை விட வலிமையாக உணர்கிறேன்.", result:"3 மாதங்களில் வலிமை வளர்ச்சி" },
   { name:"விஜி K.", age:64, city:"ஸ்கார்போரோ", quote:"தமிழ் சமூக அம்சம் எல்லா வித்தியாசத்தையும் ஏற்படுத்தியது. முதல் நாளிலிருந்தே புரிந்துகொள்ளப்பட்டதாக உணர்ந்தேன். இது குடும்பம்.", result:"சமூக தொடர்பு மற்றும் நிலைத்தன்மை" },
   { name:"சுசேலா M.", age:69, city:"மிஸிசாகா", quote:"என் மகள் என்னை தள்ளினாள். இப்போது இது இல்லாமல் என் வாரத்தை கற்பனை செய்ய முடியாது.", result:"8 மாதங்கள் தொடர்ந்து பயிற்சி" },
-  { name:"கிருஷ்ணமூர்த்தி N.", age:74, city:"நார்த் யார்க்", quote:"என் முழங்கால் அறுவைசிகிச்சைக்கு பிறகு என் செயலில் நாட்கள் முடிந்துவிட்டதாக நினைத்தேன். Strong & Free ஒரு புதிய பாதையை காட்டியது.", result:"அறுவைசிகிச்சைக்கு பிறகு மீட்சி" },
+  { name:"கிருஷ்ணமூர்த்தி N.", age:74, city:"நார்த் யார்க்", quote:"என் முழங்கால் அறுவைசிகிச்சைக்கு பிறகு என் செயலில் நாட்கள் முடிந்துவிட்டதாக நினைத்தேன். Move Strong & Free ஒரு புதிய பாதையை காட்டியது.", result:"அறுவைசிகிச்சைக்கு பிறகு மீட்சி" },
 ];
 
 function TestimonialCarousel({ lang }) {
@@ -583,7 +634,7 @@ function WhatsAppCTA({ lang }) {
     <section id="contact" className="section bg-dark">
       <FadeUp>
         <div className="wa-cta-inner">
-          <img src={LOGO} alt="Strong & Free" className="contact-logo" />
+          <img src={LOGO} alt="Move Strong & Free" className="contact-logo" />
           <h2 className="contact-title">Ready to take the first step?</h2>
           <p className="contact-sub" style={{maxWidth:480,margin:"0 auto 32px"}}>
             Chat with us on WhatsApp — tell us a little about yourself and we'll get you started. No forms, no pressure, just a conversation.
@@ -653,7 +704,7 @@ function Contact({ lang }) {
     <section id="contact" className="section bg-dark">
       <FadeUp>
         <div className="contact-inner">
-          <img src={LOGO} alt="Strong & Free" className="contact-logo" />
+          <img src={LOGO} alt="Move Strong & Free" className="contact-logo" />
           <h2 className="contact-title">{t.contact_title}</h2>
           <p className="contact-sub">{t.contact_sub}</p>
           <button className="btn-cta btn-lg" onClick={() => scrollToSection("intake")}>{t.contact_cta}</button>
@@ -671,7 +722,7 @@ function Footer({ lang }) {
   const t = T[lang];
   return (
     <footer className="footer">
-      <img src={LOGO} alt="Strong & Free" className="footer-logo" />
+      <img src={LOGO} alt="Move Strong & Free" className="footer-logo" />
       <p className="footer-tagline">{t.footer_tagline}</p>
       <p className="footer-copy">{t.footer_copy}</p>
     </footer>
@@ -681,7 +732,7 @@ function Footer({ lang }) {
 function MobileCTA({ lang }) {
   const [vis, setVis] = React.useState(false);
   React.useEffect(() => {
-    const fn = () => setVis(window.scrollY > 480);
+    const fn = () => setVis(window.scrollY > 80);
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
